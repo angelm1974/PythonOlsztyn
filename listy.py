@@ -3,7 +3,7 @@ b = ['słoń', 'kot', 23, 34, True, 44.56, 'rybki']
 print(a, b)
 print(b[-3:])
 print(str(b[4]).upper())
-
+b[0] = 'krokodyl'
 b.append('kangur')  # dodanie na ostatniej pozycji elementu do listy
 print(b)
 b.insert(3, 'pies')  # wstawienie w dowolnym miejscu
