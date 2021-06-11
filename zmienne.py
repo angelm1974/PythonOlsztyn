@@ -28,3 +28,19 @@ print(a, type(a))  # typ str
 
 # suma = a/b  # - ten fragment powoduje błąd ze wględu na brak operacji dzielenia str/float
 print(suma)
+
+b = 10
+suma = a*b
+print(suma)
+
+# definicja zmiennych (złożona definicja)
+a, b, c = 3, 3.5, "Hello"  # nadawanie nazw zmiennym po kolei
+ab = cd = ef = gi = 8  # przypisywanie tej samej wartości do różnych zmiennych
+
+var = None # definicja pustej wartości
+
+if var is None: # polecenie if z warunkiem czy var jest puste
+    print("typ pusty", type(var)) #wykonanie kodu jeżeli jest puste
+else: #w innym przypadku kiedy var jest niepuste
+    print("nie puste") # wydruk tekstu
+
