@@ -36,3 +36,5 @@ print(zwierze.title())
 substring = 'a'
 zlicz = zwierze.count(substring)
 print(zlicz)
+zwierze.upper()
+zwierze.lower()
