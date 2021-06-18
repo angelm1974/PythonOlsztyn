@@ -87,20 +87,67 @@ print(garfield.wlasciciel.nazwisko)
 
 
 class Osoba:
-    wspolczynnik_wyplaty = 1.0
+    wspolczynnik_wyplaty = 1.5
 
-    def __init__(self, imie, nazwisko, **kwargs): #konstruktor klasy
+    def __init__(self, imie, nazwisko, **kwargs):  # konstruktor klasy
         self.imie = imie
         self.nazwisko = nazwisko
         self.dodatkowy = 12
         self.stanowisko = kwargs.get('stanowisko', 'brak')
+        self.wynagrodzenie = float(kwargs.get('wynagrodzenie', 1200))
 
     def podaj_imie_nazwisko(self):
-        print(self.nazwisko,self.imie)
+        print(self.nazwisko, self.imie)
 
-Ola = Osoba('Aleksandra', 'Kot', stanowisko='dyrektor')
+    def pobierz_wynagrodzenie(self):
+        return self.wynagrodzenie * self.wspolczynnik_wyplaty
+
+
+Ola = Osoba('Aleksandra', 'Kot', stanowisko='dyrektor', wynagrodzenie=3100.32)
 print(Ola.nazwisko)
 print(Ola.wspolczynnik_wyplaty)
 print(Ola.stanowisko)
 print(Ola.dodatkowy)
 Ola.podaj_imie_nazwisko()
+wynagrodzenie_Oli = Ola.pobierz_wynagrodzenie()
+print(wynagrodzenie_Oli)
+
+
+class Administrator(Osoba):
+    wspolczynnik_wyplaty = 3.0
+
+    def __init__(self, imie, nazwisko, user, password, **kwargs):  # konstruktor klasy
+        self.imie = imie
+        self.nazwisko = nazwisko
+        self.user = user
+        self.password = password
+        self.wynagrodzenie = float(kwargs.get('wynagrodzenie', 1200))
+
+    def resetuj_system(self):
+        print(self.user+self.password+str(324))
+
+
+Kuba = Administrator('Jakub', 'Nowak', 'jakub', 'Ha5l0', wynagrodzenie=2400)
+print(Kuba.pobierz_wynagrodzenie())
+Kuba.resetuj_system()
+
+
+class Administrator2(Osoba):
+    wspolczynnik_wyplaty = 3.0
+
+    def __init__(self, imie, nazwisko, user, password, **kwargs):  # konstruktor klasy
+        super().__init__(imie, nazwisko)
+        self.user = user
+        self.password = password
+        self.wynagrodzenie = float(kwargs.get('wynagrodzenie', 1200))
+        print('Utworzono Admina 2')
+        print(f'Wynagrodzenie  brutto - {super().pobierz_wynagrodzenie()}')  # wywołanie metody z klasy nadrzednej
+
+    def pobierz_wynagrodzenie(self):
+        return (self.wynagrodzenie * self.wspolczynnik_wyplaty)/1.23
+
+
+Tomasz = Administrator2('Tomasz', 'Adamski', 'user', 'Haslo1')
+print(f'Wynagrodzenie netto - {Tomasz.pobierz_wynagrodzenie()}')
+Tomasz.podaj_imie_nazwisko()
+
