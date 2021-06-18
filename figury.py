@@ -23,23 +23,18 @@ def pole_kola(r):
 
 
 def pole_figury(**kwargs):
-    # figura
-    # a,b,h,r
-    return 3
-
-
-def pole_figury(**kwargs):
     figura = (kwargs.get('figura', 'brak argumentu'))
-    a = float(kwargs.get('a', 'brak argumentu'))
-    b = float(kwargs.get('b', 'brak argumentu'))
-    h = float(kwargs.get('h', 'brak argumentu'))
-    r = float(kwargs.get('r', 'brak argumentu'))
+    a = float(kwargs.get('a', 0))
+    b = float(kwargs.get('b', 0))
+    h = float(kwargs.get('h', 0))
+    r = float(kwargs.get('r', 0))
+
     if figura == 'kwadrat':
         return pow(a, 2)
     elif figura == 'prostokąt':
         return a*b
     elif figura == 'trójkąt':
-        return 0.5*a*b
+        return 0.5*a*h
     elif figura == 'koło':
         pole = math.pi * pow(r, 2)
         return pole

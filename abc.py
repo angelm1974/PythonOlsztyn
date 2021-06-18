@@ -1,5 +1,4 @@
-def nazwane_arg(w, **kwargs):
-    #print(kwargs.get('kosc', 'brak argumentu'))
-    print(kwargs[0])
+import figury
 
-nazwane_arg(1, kosc=23, slon=22)
+pole = figury.pole_figury(figura='koło', kosc=23, slon=22, r=20)
+print(pole)
