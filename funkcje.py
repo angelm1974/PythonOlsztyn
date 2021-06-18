@@ -74,11 +74,11 @@ make_pizza(50, 'cebula', 'czosnek', 'ketchup', 'kielbasa')
 
 
 def nazwane_arg(w, **kwargs):
-    print(kwargs.get('kosc', 'brak argumentu'))
-
+    #print(kwargs.get('kosc', 'brak argumentu'))
+    print(kwargs[0])
 
 nazwane_arg(1, kosc=23, slon=22)
 
 # mojmodul.dodawanie_m(4,6)
 # mojmodul.drukuj_sowe_m()
-dm()
+#dm()
