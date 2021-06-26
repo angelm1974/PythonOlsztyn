@@ -18,6 +18,7 @@ class Kolko_Krzyzyk():
                         [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
 
     def run(self):
+        self.runda += 1
         self.czyj_ruch = choice([self.czlowiek, self.komputer])
         print(self.czyj_ruch.imie)
         self.wybor_figury()
@@ -32,12 +33,14 @@ class Kolko_Krzyzyk():
             self.pozostalo_ruchow -= 1
             if self.pozostalo_ruchow == 0:
                 self.wyswietl_wynik()
+                self.wyczysc_gre()
                 break
 
             sprawdzenie = self.sprawdzenie_wygranej()
             if sprawdzenie == True:
                 self.czyj_ruch.dodaj_punkt()
                 self.wyswietl_wynik()
+                self.wyczysc_gre()
                 break
 
             if self.czyj_ruch == self.komputer:
@@ -101,3 +104,7 @@ class Kolko_Krzyzyk():
             self.plansza[wybor_z_interfejsu] = 1
 
         print('po ruchu czlowieka', self.plansza)
+
+    def wyczysc_gre(self):
+        self.pozostalo_ruchow = 9
+        self.plansza = [0, 0, 0, 0, 0, 0, 0, 0, 0]
