@@ -8,7 +8,7 @@ from random import choice
 
 class Kolko_Krzyzyk():
     def __init__(self):  # konstruktor klasy
-        self.czlowiek = Gracz(input('Podaj imię: '))
+        self.czlowiek = Gracz("Człowiek")
         self.komputer = Gracz('Ai')
         self.runda = 0
         self.czyj_ruch = 0

@@ -9,10 +9,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         super().__init__()
         self.setupUi(self)
         self.pushButton.clicked.connect(self.przelicz)
+        self.la
         self.show()
 
     def przelicz(self):
         self.label_2.setText(self.lineEdit.text().upper())
+        
 
 
 app = QApplication([])
