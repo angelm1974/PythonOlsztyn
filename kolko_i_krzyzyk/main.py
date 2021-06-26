@@ -21,7 +21,7 @@
 # wyświetlamy planszę po zmianach
 # w przypadku kiedy zwycięstwo jednego z graczy to ogłaszamy
 
-from kolko_i_krzyzyk.kolko_krzyzyk import Kolko_Krzyzyk
+from kolko_krzyzyk import Kolko_Krzyzyk
 
 
 moja_gra = Kolko_Krzyzyk()

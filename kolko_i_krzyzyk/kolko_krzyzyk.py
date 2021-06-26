@@ -1,5 +1,5 @@
 
-from kolko_i_krzyzyk.gracz import Gracz
+from gracz import Gracz
 from random import choice
 
 # Możliwe Figury True=kółko, False=Krzyżyk
@@ -18,8 +18,8 @@ class Kolko_Krzyzyk():
                         [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
 
     def run(self):
-        self.czyj_ruch = choice[self.czlowiek, self.komputer]
-        print(self.czyj_ruch)
+        self.czyj_ruch = choice([self.czlowiek, self.komputer])
+        print(self.czyj_ruch.imie)
         self.wybor_figury()
 
         while True:
@@ -71,7 +71,7 @@ class Kolko_Krzyzyk():
 
     def wybor_figury(self):
         if self.czyj_ruch == self.komputer:
-            self.komputer.figura = choice[True, False]
+            self.komputer.figura = choice([True, False])
             self.czlowiek.figura = not(self.komputer.figura)
             print(self.komputer.figura)
         else:
