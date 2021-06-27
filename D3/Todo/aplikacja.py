@@ -1,4 +1,6 @@
+import json
 import sys
+
 
 from PyQt6 import QtCore, QtGui, QtWidgets
 from PyQt6.QtCore import Qt
@@ -39,8 +41,9 @@ class Okno(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        todos = [(False, 'Kup bułki'), (True, 'Jakaś wartość')]
-        self.model = TodoModel(todos)
+        #todos = [(False, 'Kup bułki'), (True, 'Jakaś wartość')]
+        self.model = TodoModel()
+        self.load()
         self.listView.setModel(self.model)
         self.btnDodaj.pressed.connect(self.add)
         self.btnKoniecZadania.pressed.connect(self.update)
@@ -58,6 +61,7 @@ class Okno(QtWidgets.QMainWindow, Ui_MainWindow):
             self.model.layoutChanged.emit()
             # czyszczenie pola tekstowe
             self.lineEdit.clear()
+            self.save()
 
     def delete(self):
         indexy = self.listView.selectedIndexes()
@@ -74,6 +78,7 @@ class Okno(QtWidgets.QMainWindow, Ui_MainWindow):
 
             # czyszczenie zaznaczenia na liscie
             self.listView.clearSelection()
+            self.save()
 
     def update(self):
         indexy = self.listView.selectedIndexes()
@@ -90,6 +95,18 @@ class Okno(QtWidgets.QMainWindow, Ui_MainWindow):
 
             # czyszczenie zaznaczenia na liscie
             self.listView.clearSelection()
+            self.save()
+
+    def load(self):
+        try:
+            with open("dane.json", "r") as f:
+                self.model.todos = json.load(f)
+        except Exception:
+            pass
+
+    def save(self):
+        with open("dane.json", "w") as f:
+            dane = json.dump(self.model.todos, f)
 
 
 app = QtWidgets.QApplication(sys.argv)
