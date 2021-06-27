@@ -6,6 +6,9 @@ from PyQt6.QtCore import Qt
 from interfejs import Ui_MainWindow
 
 
+ikona = QtGui.QImage('bd.png')
+kolor = QtGui.QColor('green')
+
 
 class TodoModel(QtCore.QAbstractListModel):
     def __init__(self, todos=None):
@@ -17,23 +20,30 @@ class TodoModel(QtCore.QAbstractListModel):
             status, text = self.todos[index.row()]
             return text
 
+        if role == Qt.ItemDataRole.DecorationRole:
+            status, _ = self.todos[index.row()]
+            if status:
+                return kolor
+
     def rowCount(self, index):
         return len(self.todos)
 
-#CRUD
+# CRUD
 #Create - ok
 #Read - ok
-#Update
+# Update
 #Delete - ok
+
 
 class Okno(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        todos = [(False, 'Kup bułki'), (False, 'Jakaś wartość')]
+        todos = [(False, 'Kup bułki'), (True, 'Jakaś wartość')]
         self.model = TodoModel(todos)
         self.listView.setModel(self.model)
         self.btnDodaj.pressed.connect(self.add)
+        self.btnKoniecZadania.pressed.connect(self.update)
         self.btnKasuj.pressed.connect(self.delete)
 
     def add(self):
@@ -61,6 +71,22 @@ class Okno(QtWidgets.QMainWindow, Ui_MainWindow):
 
             # powiadomienie interfejsu ze dane się zmieniły
             self.model.layoutChanged.emit()
+
+            # czyszczenie zaznaczenia na liscie
+            self.listView.clearSelection()
+
+    def update(self):
+        indexy = self.listView.selectedIndexes()
+
+        if indexy:
+            # wybór pierwszego zaznaczonego wiersza listy
+            index = indexy[0]
+            row = index.row()
+
+            status, text = self.model.todos[row]
+            self.model.todos[row] = (True, text)
+
+            self.model.dataChanged.emit(index, index)
 
             # czyszczenie zaznaczenia na liscie
             self.listView.clearSelection()
