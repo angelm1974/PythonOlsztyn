@@ -6,6 +6,7 @@ from PyQt6.QtCore import Qt
 from interfejs import Ui_MainWindow
 
 
+
 class TodoModel(QtCore.QAbstractListModel):
     def __init__(self, todos=None):
         super().__init__()
