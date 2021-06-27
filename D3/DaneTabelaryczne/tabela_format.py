@@ -10,19 +10,20 @@ class TabelaModel(QtCore.QAbstractTableModel):
         self._data = data
 
     def data(self, index, role):
+        if role == Qt.ItemDataRole.DisplayRole:
 
-        value = self._data[index.row()][index.column()]
+            value = self._data[index.row()][index.column()]
 
-        if isinstance(value, datetime):
-            return value.strftime("%Y-%m-%d")
+            if isinstance(value, datetime):
+                return value.strftime("%Y-%m-%d")
 
-        if isinstance(value, float):
-            return "%.2f" % value
+            if isinstance(value, float):
+                return "%.2f" % value
 
-        if isinstance(value, str):
-            return '"%s"' % value
+            if isinstance(value, str):
+                return '"%s"' % value
 
-        return value
+            return value
 
     def rowCount(self, index):
         return len(self._data)
